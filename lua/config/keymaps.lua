@@ -41,7 +41,9 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
-
+-- Add a new line NOT working
+-- keymap.set("n", "<Enter>", "o<Esc>", opts)
+-- keymap.set("n", "<s-CR>", "O<Esc>", opts)
 -- New tab
 keymap.set("n", "te", ":tabedit")
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
