@@ -19,6 +19,9 @@ return {
         comment_italics = true,
         background_set = false,
       })
+      require("notify").setup({
+        background_colour = "#000000",
+      })
     end,
   },
 }
