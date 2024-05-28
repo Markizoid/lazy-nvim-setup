@@ -16,6 +16,7 @@ return {
     },
     config = function()
       require("neosolarized").setup({
+        transparent = true,
         comment_italics = true,
         background_set = false,
       })

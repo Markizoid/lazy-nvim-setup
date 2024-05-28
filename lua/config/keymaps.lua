@@ -22,6 +22,9 @@ local opts = { noremap = true, silent = true }
 -- keymap.set("v", "<Leader>d", '"_d')
 -- keymap.set("v", "<Leader>D", '"_D')
 
+-- Exit Insert Mode
+keymap.set("i", "jk", "<Esc>", opts)
+
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
