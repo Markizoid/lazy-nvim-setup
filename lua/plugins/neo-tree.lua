@@ -28,6 +28,12 @@ return {
           enabled = true,
           required_width = 60,
         }
+      },
+      filesystem = {
+        hijack_netrw_behavior="open_current",
+        follow_current_file = {
+          enabled = true,
+        }
       }
     })
   end

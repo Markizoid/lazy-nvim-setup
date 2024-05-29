@@ -6,6 +6,9 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
   },
+  opts = {
+              autoformat = false,
+  },
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
