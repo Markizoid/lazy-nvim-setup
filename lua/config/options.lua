@@ -40,6 +40,11 @@ vim.opt.splitright = true     -- Put new windows right of current
 vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
 
+-- Disable swap-files notifications
+-- vim.opt.shortmess = 'A'
+vim.cmd("set noswapfile")
+vim.cmd("set colorcolumn=80")
+
 -- Make autocmp windows transparent
 -- TODO: check if it's needed if colorscheme option is set
 vim.opt.pumblend = 0
