@@ -7,8 +7,8 @@ return {
     -- "MunifTanjim/nui.nvim",
   },
   config = function()
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
+    -- vim.g.loaded_netrw = 1
+    -- vim.g.loaded_netrwPlugin = 1
 
     -- Make neo-tree transparent
     vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
