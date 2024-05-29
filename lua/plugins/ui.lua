@@ -65,7 +65,7 @@ return {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
-      { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
+      { "<Tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
       { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
     },
     opts = {
@@ -89,7 +89,6 @@ return {
       },
     },
   },
-
   -- filename
   {
     "b0o/incline.nvim",
@@ -101,7 +100,7 @@ return {
       require("incline").setup({
         highlight = {
           groups = {
-            InclineNormal = { guibg = colors.cyan100, guifg = colors.base04 },
+            InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
             InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
           },
         },

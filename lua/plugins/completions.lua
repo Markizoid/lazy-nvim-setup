@@ -14,7 +14,6 @@ return {
     config = function()
       local cmp = require("cmp")
       require("luasnip.loaders.from_vscode").lazy_load()
-
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -41,6 +40,8 @@ return {
           { name = "buffer" },
         }),
       })
+      -- Make cmp-window transparent
+      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end,
   },
 }

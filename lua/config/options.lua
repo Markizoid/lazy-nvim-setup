@@ -35,10 +35,21 @@ vim.opt.tabstop = 2
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
-vim.opt.splitbelow = true -- Put new windows below current
-vim.opt.splitright = true -- Put new windows right of current
+vim.opt.splitbelow = true     -- Put new windows below current
+vim.opt.splitright = true     -- Put new windows right of current
 vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
+
+-- Make autocmp windows transparent
+-- TODO: check if it's needed if colorscheme option is set
+vim.opt.pumblend = 0
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+
+-- Lazygit transparent
+vim.g.lazygit_floating_window_winblend = 0
+-- Lazygit settings
+vim.g.lazygit_use_neovim_remote = 0
 
 -- vim.opt.textwidth = 80
 -- Undercurl
