@@ -45,6 +45,9 @@ vim.opt.mouse = ""
 vim.cmd("set noswapfile")
 vim.cmd("set colorcolumn=80")
 
+-- Disable autoformat on save
+vim.g.autoformat = false
+
 -- Make autocmp windows transparent
 -- TODO: check if it's needed if colorscheme option is set
 vim.opt.pumblend = 0
