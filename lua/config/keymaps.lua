@@ -10,9 +10,9 @@ local opts = { noremap = true, silent = true }
 
 -- Do things without affecting the registers
 -- keymap.set("n", "x", '"_x')
--- keymap.set("n", "<Leader>p", '"0p')
--- keymap.set("n", "<Leader>P", '"0P')
--- keymap.set("v", "<Leader>p", '"0p')
+-- keymap.set("n", "<Leader>p", '"1p')
+-- keymap.set("n", "<Leader>P", '"1P')
+-- keymap.set("v", "<Leader>p", '"1p')
 -- keymap.set("n", "<Leader>c", '"_c')
 -- keymap.set("n", "<Leader>C", '"_C')
 -- keymap.set("v", "<Leader>c", '"_c')
@@ -22,6 +22,10 @@ local opts = { noremap = true, silent = true }
 -- keymap.set("v", "<Leader>d", '"_d')
 -- keymap.set("v", "<Leader>D", '"_D')
 
+-- Exit Insert Mode
+keymap.set("i", "jk", "<Esc>", opts)
+-- New_line in normal Mode
+keymap.set("n", "<CR>", "i<CR><Esc>")
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
