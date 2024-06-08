@@ -1,6 +1,6 @@
 return {
   {
-    "hrsh7th/cmp-nvim-lsp"
+    "hrsh7th/cmp-nvim-lsp",
   },
   {
     "L3MON4D3/LuaSnip",
@@ -14,7 +14,6 @@ return {
     config = function()
       local cmp = require("cmp")
       require("luasnip.loaders.from_vscode").lazy_load()
-
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -31,6 +30,8 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+          ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -38,6 +39,8 @@ return {
           { name = "buffer" },
         }),
       })
+      -- Make cmp-window transparent
+      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end,
   },
 }

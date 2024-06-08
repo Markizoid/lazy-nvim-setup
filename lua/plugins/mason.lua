@@ -15,6 +15,7 @@ return {
 
     -- enable mason and configure icons
     mason.setup({
+      PATH = "prepend",
       ui = {
         icons = {
           package_installed = "✓",
@@ -32,14 +33,13 @@ return {
         "cssls",
         "tailwindcss",
         "svelte",
-        "lua_ls",
         "graphql",
-        "jedi_language_server",
       },
     })
-
     mason_tool_installer.setup({
       ensure_installed = {
+        "jedi_language_server",
+        "markdown-oxide",
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "black", -- python formatter

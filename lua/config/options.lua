@@ -45,6 +45,21 @@ vim.opt.mouse = ""
 vim.cmd("set noswapfile")
 vim.cmd("set colorcolumn=80")
 
+-- Disable autoformat on save
+vim.g.autoformat = false
+
+-- Make autocmp windows transparent
+-- TODO: check if it's needed if colorscheme option is set
+vim.opt.pumblend = 0
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+
+-- Lazygit transparent
+vim.g.lazygit_floating_window_winblend = 0
+-- Lazygit settings
+vim.g.lazygit_use_neovim_remote = 0
+
+-- vim.opt.textwidth = 80
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
