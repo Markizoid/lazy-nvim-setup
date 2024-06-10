@@ -15,6 +15,10 @@ return {
 
     -- enable mason and configure icons
     mason.setup({
+      providers = {
+        "mason.providers.client",
+        "mason.providers.registry-api",
+      },
       PATH = "prepend",
       ui = {
         icons = {
@@ -38,7 +42,7 @@ return {
     })
     mason_tool_installer.setup({
       ensure_installed = {
-        "jedi_language_server",
+        "jedi-language-server",
         "markdown-oxide",
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
