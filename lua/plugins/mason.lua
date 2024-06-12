@@ -15,6 +15,7 @@ return {
 
     -- enable mason and configure icons
     mason.setup({
+      ensure_installed = {"debugpy"},
       providers = {
         "mason.providers.client",
         "mason.providers.registry-api",
