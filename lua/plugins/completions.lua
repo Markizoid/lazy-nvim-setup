@@ -34,6 +34,7 @@ return {
           ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
         }),
         sources = cmp.config.sources({
+          { name = "supermaven"},
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
           { name = "buffer" },
