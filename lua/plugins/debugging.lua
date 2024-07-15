@@ -19,6 +19,9 @@ return {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
+
+      -- Enable logging
+      dap.set_log_level("TRACE")
     end,
   },
   {
@@ -26,32 +29,55 @@ return {
     config = function(_, opts)
       local dap = require("dap")
       dap.adapters.python = {
-        type = "executable",
-        command = "C:/Users/user/Development/work/SPPR/venv/Scripts/python.exe",
-        args = { "-m", "debugpy.adapter" },
+        type = "server",
+        host = "127.0.0.1",
+        port = 5678,
       }
+
       dap.configurations.python = {
         {
           type = "python",
-          request = "launch",
-          name = "Launch file",
-          program = "${file}",
-          args = { "-Xfrozen_modules=off" },
+          request = "attach",
+          name = "Attach to process",
+          -- program = "${file}",
+          connect = {
+            host = "127.0.0.1",
+            port = 5678,
+          },
           pythonPath = function()
-            -- Use the selected virtual environment from venv-selector
-            local venv_path = vim.fn.getenv("VIRTUAL_ENV")
-            if venv_path and venv_path ~= vim.NIL then
-              return venv_path .. "/Scripts/python.exe"
-            else
-              -- Fallback to a default path if VIRTUAL_ENV is not set
-              return "C:/Users/user/Development/work/SPPR/venv/Scripts/python.exe"
-            end
+            return "C:/Marat/NOC/SPPR/venv/Scripts/python.exe"
           end,
+          subProcess = true,
+          justMyCode = true,
         },
       }
-      vim.keymap.set("n", "<F10>", '<cmd>lua require"dap".step_over()<CR>')
-      vim.keymap.set("n", "<F11>", '<cmd>lua require"dap".step_into()<CR>')
-      vim.keymap.set("n", "<F12>", '<cmd>lua require"dap".step_out()<CR>')
+      -- dap.adapters.python = {
+      --   type = "executable",
+      --   command = "C:/Marat/NOC/SPPR/venv/Scripts/python.exe", -- Ensure this path is correct
+      --   args = { "-m", "debugpy.adapter", "--log-to-stderr", "--log-level=debug", },
+      -- }
+      -- dap.configurations.python = {
+      --   {
+      --     type = "python",
+      --     request = "attach",
+      --     name = "Attach to running script",
+      --     host = "localhost",
+      --     port = 5678,
+      --     -- program = "${file}",
+      --     pythonPath = function()
+      --       local venv_path = vim.fn.getenv("VIRTUAL_ENV")
+      --       if venv_path and venv_path ~= vim.NIL then
+      --         return venv_path .. "/Scripts/python.exe"
+      --       else
+      --         return "C:/Marat/NOC/SPPR/venv/Scripts/python.exe" -- Ensure this path is correct
+      --       end
+      --     end,
+      --   },
+      -- }
+
+      vim.keymap.set("n", "<F1>", '<cmd>lua require"dap".step_over()<CR>')
+      vim.keymap.set("n", "<F2>", '<cmd>lua require"dap".step_into()<CR>')
+      vim.keymap.set("n", "<F3>", '<cmd>lua require"dap".step_out()<CR>')
       vim.keymap.set("n", "<F5>", '<cmd>lua require"dap".continue()<CR>')
       vim.keymap.set("n", "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<CR>')
       vim.keymap.set(
@@ -59,7 +85,6 @@ return {
         "<leader>dc",
         '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>'
       )
-
       vim.keymap.set("n", "<leader>du", '<cmd>lua require"dapui".toggle()<CR>')
     end,
   },
@@ -77,10 +102,11 @@ return {
       if venv_path and venv_path ~= vim.NIL then
         dap_python.setup(venv_path .. "/Scripts/python.exe")
       else
-        -- Fallback to a default path if VIRTUAL_ENV is not set
-        dap_python.setup("C:/Users/user/Development/work/SPPR/venv/Scripts/python.exe")
+        dap_python.setup("C:/Marat/NOC/SPPR/venv/Scripts/python.exe")
       end
       dap_python.test_runner = "pytest"
+      -- dap_python.default_port = 38000
+
     end,
     keys = {
       {
