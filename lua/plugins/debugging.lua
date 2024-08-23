@@ -3,9 +3,13 @@ return {
     "nvim-neotest/nvim-nio",
   },
   {
-    "rcarriga/nvim-dap-ui",
-    dependencies = "mfussenegger/nvim-dap",
-    config = function()
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function(_, opts)
       local dap = require("dap")
       local dapui = require("dapui")
 
@@ -22,58 +26,75 @@ return {
 
       -- Enable logging
       dap.set_log_level("TRACE")
-    end,
+
+      -- local path = "~/.virtualenvs/debugpy/Scripts/python.exe"
+      local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/Scripts/python.exe"
+      require("dap-python").setup(path)
+    end
   },
   {
     "mfussenegger/nvim-dap",
     config = function(_, opts)
       local dap = require("dap")
-      dap.adapters.python = {
-        type = "server",
-        host = "127.0.0.1",
-        port = 5678,
-      }
-
-      dap.configurations.python = {
-        {
-          type = "python",
-          request = "attach",
-          name = "Attach to process",
-          -- program = "${file}",
-          connect = {
-            host = "127.0.0.1",
-            port = 5678,
-          },
-          pythonPath = function()
-            return "C:/Marat/NOC/SPPR/venv/Scripts/python.exe"
-          end,
-          subProcess = true,
-          justMyCode = true,
-        },
-      }
       -- dap.adapters.python = {
-      --   type = "executable",
-      --   command = "C:/Marat/NOC/SPPR/venv/Scripts/python.exe", -- Ensure this path is correct
-      --   args = { "-m", "debugpy.adapter", "--log-to-stderr", "--log-level=debug", },
+      --   type = "server",
+      --   host = "127.0.0.1",
+      --   port = 55486,
       -- }
+      --
       -- dap.configurations.python = {
       --   {
       --     type = "python",
       --     request = "attach",
-      --     name = "Attach to running script",
-      --     host = "localhost",
-      --     port = 5678,
+      --     name = "Attach to process",
       --     -- program = "${file}",
+      --     connect = {
+      --       host = "127.0.0.1",
+      --       port = 55486,
+      --     },
       --     pythonPath = function()
-      --       local venv_path = vim.fn.getenv("VIRTUAL_ENV")
-      --       if venv_path and venv_path ~= vim.NIL then
-      --         return venv_path .. "/Scripts/python.exe"
-      --       else
-      --         return "C:/Marat/NOC/SPPR/venv/Scripts/python.exe" -- Ensure this path is correct
-      --       end
+      --       return "C:/Marat/NOC/SPPR/venv/Scripts/python.exe"
       --     end,
+      --     subProcess = true,
+      --     justMyCode = true,
       --   },
       -- }
+      
+      -- local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "\\venv\\Scripts\\python.exe"
+      -- dap.adapters.python = {
+      --   type = "executable",
+      --   command = path, -- Ensure this path is correct
+      --   args = { "-m", "debugpy.adapter", "--log-to-stderr", "--log-level=debug", "--multiprocess", "--qt-support=auto"},
+      -- }
+      -- dap.configurations.python = {
+      --   {
+      --     type = "python", -- the type here establishes the link to the adapter definition: `dap.adapters.python`
+      --     request = "launch",
+      --     name = "Launch file",
+      --     program = "${file}", -- This configuration will launch the current file if used.
+      --     pythonPath = function()
+      --       return "./venv/Scripts/python.exe"
+      --     end;
+      --   },
+      -- }
+      -- -- dap.configurations.python = {
+      -- --   {
+      -- --     type = "python",
+      -- --     request = "attach",
+      -- --     name = "Attach to running script",
+      -- --     host = "localhost",
+      -- --     port = 5678,
+      -- --     -- program = "${file}",
+      -- --     pythonPath = function()
+      -- --       local venv_path = vim.fn.getenv("VIRTUAL_ENV")
+      -- --       if venv_path and venv_path ~= vim.NIL then
+      -- --         return venv_path .. "/Scripts/python.exe"
+      -- --       else
+      -- --         return "$env:PYTHONPATH/python.exe" -- Ensure this path is correct
+      -- --       end
+      -- --     end,
+      -- --   },
+      -- -- }
 
       vim.keymap.set("n", "<F1>", '<cmd>lua require"dap".step_over()<CR>')
       vim.keymap.set("n", "<F2>", '<cmd>lua require"dap".step_into()<CR>')
@@ -87,35 +108,6 @@ return {
       )
       vim.keymap.set("n", "<leader>du", '<cmd>lua require"dapui".toggle()<CR>')
     end,
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-      "nvim-neotest/nvim-nio",
-    },
-    config = function(_, opts)
-      local dap_python = require("dap-python")
-      local venv_path = vim.fn.getenv("VIRTUAL_ENV")
-      if venv_path and venv_path ~= vim.NIL then
-        dap_python.setup(venv_path .. "/Scripts/python.exe")
-      else
-        dap_python.setup("C:/Marat/NOC/SPPR/venv/Scripts/python.exe")
-      end
-      dap_python.test_runner = "pytest"
-      -- dap_python.default_port = 38000
-
-    end,
-    keys = {
-      {
-        "<leader>dt",
-        function()
-          require("dap-python").test_method()
-        end,
-      },
-    },
   },
   {
     "williamboman/mason.nvim",
