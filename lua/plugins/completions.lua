@@ -1,16 +1,6 @@
 return {
   {
-    "hrsh7th/cmp-nvim-lsp",
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-    },
-  },
-  {
-    "hrsh7th/nvim-cmp",
+    "hrsh7th/nvim-cmp", -- Ensure this is the first plugin
     config = function()
       local cmp = require("cmp")
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -30,18 +20,23 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-          ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
         }),
         sources = cmp.config.sources({
-          -- { name = "supermaven"},
           { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "luasnip" },
           { name = "buffer" },
         }),
       })
-      -- Make cmp-window transparent
       vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end,
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" },
+  },
+  {
+    "saadparwaiz1/cmp_luasnip", -- Ensure this comes after nvim-cmp
   },
 }

@@ -1,6 +1,31 @@
 return {
   {
-    "nvim-neotest/nvim-nio",
+    "mfussenegger/nvim-dap",
+    config = function(_, opts)
+      local dap = require("dap")
+
+      dap.adapters.python = {
+        type = "server",
+        host = "127.0.0.1",
+        port = 5681, -- Ensure this matches the port in `debugpy.listen`
+        options = { timeout = 1000 },
+      }
+
+      dap.configurations.python = {
+        {
+          type = "python",
+          request = "attach",
+          name = "attach to process",
+          connect = {
+            host = "127.0.0.1",
+            port = 5681,
+          },
+          pythonPath = function()
+            return "C:\\Users\\user\\development\\work\\sppr\\venv\\scripts\\python.exe"
+          end,
+        },
+      }
+    end,
   },
   {
     "mfussenegger/nvim-dap-python",
@@ -11,111 +36,43 @@ return {
     },
     config = function(_, opts)
       local dap = require("dap")
-      local dapui = require("dapui")
+      require("dap-python").setup("C:\\Users\\user\\development\\work\\sppr\\venv\\scripts\\python.exe")
+      vim.keymap.set("n", "<F5>", function()
+        require("dap").continue()
+      end) -- Start/Continue the debug session
+      vim.keymap.set("n", "<F10>", function()
+        require("dap").step_over()
+      end) -- Step over the function
+      vim.keymap.set("n", "<F11>", function()
+        require("dap").step_into()
+      end) -- Step into the function
+      vim.keymap.set("n", "<F12>", function()
+        require("dap").step_out()
+      end) -- Step out of the function
+      vim.keymap.set("n", "<leader>db", function()
+        require("dap").toggle_breakpoint()
+      end) -- Toggle breakpoint
+      vim.keymap.set("n", "<leader>dc", function()
+        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      end) -- Conditional breakpoint
+      vim.keymap.set("n", "<leader>dr", function()
+        require("dap").repl.open()
+      end) -- Open REPL
+      vim.keymap.set("n", "<leader>dl", function()
+        require("dap").run_last()
+      end) -- Rerun last debug session
 
-      dapui.setup()
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-
-      -- Enable logging
-      dap.set_log_level("TRACE")
-
-      -- local path = "~/.virtualenvs/debugpy/Scripts/python.exe"
-      local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/Scripts/python.exe"
-      require("dap-python").setup(path)
-    end
-  },
-  {
-    "mfussenegger/nvim-dap",
-    config = function(_, opts)
-      local dap = require("dap")
-      -- dap.adapters.python = {
-      --   type = "server",
-      --   host = "127.0.0.1",
-      --   port = 55486,
-      -- }
-      --
-      -- dap.configurations.python = {
-      --   {
-      --     type = "python",
-      --     request = "attach",
-      --     name = "Attach to process",
-      --     -- program = "${file}",
-      --     connect = {
-      --       host = "127.0.0.1",
-      --       port = 55486,
-      --     },
-      --     pythonPath = function()
-      --       return "C:/Marat/NOC/SPPR/venv/Scripts/python.exe"
-      --     end,
-      --     subProcess = true,
-      --     justMyCode = true,
-      --   },
-      -- }
-      
-      -- local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "\\venv\\Scripts\\python.exe"
-      -- dap.adapters.python = {
-      --   type = "executable",
-      --   command = path, -- Ensure this path is correct
-      --   args = { "-m", "debugpy.adapter", "--log-to-stderr", "--log-level=debug", "--multiprocess", "--qt-support=auto"},
-      -- }
-      -- dap.configurations.python = {
-      --   {
-      --     type = "python", -- the type here establishes the link to the adapter definition: `dap.adapters.python`
-      --     request = "launch",
-      --     name = "Launch file",
-      --     program = "${file}", -- This configuration will launch the current file if used.
-      --     pythonPath = function()
-      --       return "./venv/Scripts/python.exe"
-      --     end;
-      --   },
-      -- }
-      -- -- dap.configurations.python = {
-      -- --   {
-      -- --     type = "python",
-      -- --     request = "attach",
-      -- --     name = "Attach to running script",
-      -- --     host = "localhost",
-      -- --     port = 5678,
-      -- --     -- program = "${file}",
-      -- --     pythonPath = function()
-      -- --       local venv_path = vim.fn.getenv("VIRTUAL_ENV")
-      -- --       if venv_path and venv_path ~= vim.NIL then
-      -- --         return venv_path .. "/Scripts/python.exe"
-      -- --       else
-      -- --         return "$env:PYTHONPATH/python.exe" -- Ensure this path is correct
-      -- --       end
-      -- --     end,
-      -- --   },
-      -- -- }
-
-      vim.keymap.set("n", "<F1>", '<cmd>lua require"dap".step_over()<CR>')
-      vim.keymap.set("n", "<F2>", '<cmd>lua require"dap".step_into()<CR>')
-      vim.keymap.set("n", "<F3>", '<cmd>lua require"dap".step_out()<CR>')
-      vim.keymap.set("n", "<F5>", '<cmd>lua require"dap".continue()<CR>')
-      vim.keymap.set("n", "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<CR>')
-      vim.keymap.set(
-        "n",
-        "<leader>dc",
-        '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>'
-      )
-      vim.keymap.set("n", "<leader>du", '<cmd>lua require"dapui".toggle()<CR>')
+      -- DAP UI specific bindings
+      vim.keymap.set("n", "<leader>du", function()
+        require("dapui").toggle()
+      end) -- Toggle DAP UI
     end,
   },
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "pytest",
-        "debugpy",
-      },
-    },
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "nvim-neotest/nvim-nio" },
+    config = function(_, opts)
+      require("dapui").setup()
+    end,
   },
 }

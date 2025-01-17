@@ -49,7 +49,6 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "black", -- python formatter
-        "pylint",
         "eslint_d",
       },
     })

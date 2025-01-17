@@ -1,6 +1,9 @@
 return {
 
   "nvim-telescope/telescope.nvim",
+  dependencies = {
+    "nvim-telescope/telescope-fzf-native.nvim",
+  },
   -- keys = {
   --   -- add a keymap to browse plugin files
   --   -- stylua: ignore
