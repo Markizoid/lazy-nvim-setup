@@ -35,6 +35,7 @@ return {
       ensure_installed = {
         -- "tsserver",
         -- "pyright",
+        "jedi-language-server",
         "html",
         "cssls",
         "tailwindcss",
@@ -44,7 +45,7 @@ return {
     })
     mason_tool_installer.setup({
       ensure_installed = {
-        "jedi-language-server",
+        -- "jedi-language-server",
         "markdown-oxide",
         "prettier", -- prettier formatter
         "stylua", -- lua formatter

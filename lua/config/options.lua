@@ -58,7 +58,7 @@ vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 vim.g.lazygit_floating_window_winblend = 0
 -- Lazygit settings
 vim.g.lazygit_use_neovim_remote = 0
-vim.g.snacks_animation = false
+vim.g.snacks_animate = false
 -- vim.opt.textwidth = 80
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
