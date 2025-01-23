@@ -50,7 +50,7 @@ vim.g.autoformat = false
 
 -- Make autocmp windows transparent
 -- TODO: check if it's needed if colorscheme option is set
-vim.opt.pumblend = 0
+-- vim.opt.pumblend = 0
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 

@@ -9,18 +9,25 @@ return {
         styles = {
           sidebars = "transparent",
           floats = "transparent",
-        }
+        },
       }
     end,
+    config = function()
+      require("solarized-osaka").setup({
+        on_highlights = function(hl, c)
+          -- здесь можно настраивать цвета для Highlight Groups
+          hl.NeoTreeNormal = { bg = "none"}
+          hl.NeoTreeNormalNC = { bg = "none"}
+          hl.BlinkCmpMenu = { bg = "none", fg = c.orange700 }
+          hl.BlinkCmpMenuBorder = { fg = c.orange700 }
+          hl.NormalFloat = { bg = "none" }
+          hl.FzfLuaNormal = { bg = "none" }
+          hl.FzfLuaBorder = { bg = "none" , fg = c.orange700 }
+          hl.FzfLuaTitle = { bg = "none" , fg = c.orange300 }
+        end,
+      })
+    end,
   },
-  -- {
-  --   "saghen/blink.cmp",
-  --   config = function()
-  --   local color = require("solarized-osaka.colors").setup()
-  --   -- Ensure your colorscheme is set before this
-  --   vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = color.base01 })
-  --   end,
-  -- }
   -- {
   --   "svrana/neosolarized.nvim",
   --   dependencies = {
