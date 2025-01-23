@@ -7,12 +7,14 @@ return {
   config = function()
     require("fzf-lua").setup({
       "telescope",
-      -- winopts = {
+      winopts = {
+        height = 0.8,
+        width = 0.5,
+      },
       -- hls = {
       --     normal = {"Normal"},
       -- }
       -- -- hls.normal = {"Normal"}
-      -- }
     })
   end,
   -- opts = {

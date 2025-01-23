@@ -39,6 +39,7 @@ vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
+vim.opt.cursorline = false
 
 -- Disable swap-files notifications
 -- vim.opt.shortmess = 'A'
@@ -59,7 +60,6 @@ vim.g.lazygit_floating_window_winblend = 0
 -- Lazygit settings
 vim.g.lazygit_use_neovim_remote = 0
 vim.g.snacks_animate = false
--- vim.opt.textwidth = 80
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
