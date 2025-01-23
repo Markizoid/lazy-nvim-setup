@@ -14,6 +14,14 @@ return {
     end,
   },
   -- {
+  --   "saghen/blink.cmp",
+  --   config = function()
+  --   local color = require("solarized-osaka.colors").setup()
+  --   -- Ensure your colorscheme is set before this
+  --   vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = color.base01 })
+  --   end,
+  -- }
+  -- {
   --   "svrana/neosolarized.nvim",
   --   dependencies = {
   --     "tjdevries/colorbuddy.nvim",
