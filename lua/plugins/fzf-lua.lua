@@ -6,11 +6,22 @@ return {
   dependencies = { "echasnovski/mini.icons" },
   config = function()
     require("fzf-lua").setup({
-      "telescope",
+      "fzf-native",
       winopts = {
+        col = 1,
+        row = 1,
         height = 0.8,
         width = 0.5,
+        preview = {
+          default = "builtin",
+        },
       },
+      -- keymap = {
+      --   ["<ctrl-Space>"] = "file-selection-to-qf",
+      -- },
+      -- defaults = {
+      --   copen = "topright copen"
+      -- }
       -- hls = {
       --     normal = {"Normal"},
       -- }
@@ -18,7 +29,7 @@ return {
     })
   end,
   -- opts = {
-  --   hls = { 
+  --   hls = {
   --     normal = { "Normal" },
   --     border = { "FloatBorder" },
   --   },
