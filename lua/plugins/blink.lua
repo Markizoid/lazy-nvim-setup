@@ -1,6 +1,3 @@
--- local colors = require("solarized-osaka.colors").setup()
--- vim.api.nvim_set_hl(0, "BlinkCmpMenu", { fg = colors.orange, bg = colors.orange })
-
 return {
   -- Наконц! получилось настроить цветовую схему для автозаполнения
   -- {
@@ -47,44 +44,41 @@ return {
       }
       opts.completion = {
         menu = {
-          border = "single",
-          winblend = 0,
+          border = "none",
+          -- winblend = 0,
           min_width = 20,
           max_height = 15,
           -- winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder",
-          draw = {
-            treesitter = { "lsp" },
-          },
+          -- draw = {
+          --   treesitter = { "lsp" },
+          -- },
         },
         documentation = {
+          auto_show = true,
           window = {
             min_width = 20,
-            max_width = 80,
+            max_width = 60,
             max_height = 80,
             border = "single",
           },
         },
       }
-      -- signature = {
-      --   window = {
-      --     border = 'single'
-      --   },
-      -- },
+      signature = {
+        enabled = true,
+        window = {
+          min_width = 20,
+          max_width = 60,
+          max_height = 80,
+          border = 'single'
+        },
+      }
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       opts.sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "snippets", "lsp", "path", "buffer" },
       }
-
-      -- require("solarized-osaka").setup({
-      --   on_colors = function(hl)
-      --     local colors = require("solarized-osaka.colors").setup()
-      --     hl.BlinkCmpMenu = { fg = colors.orange, bg = colors.orange }
-      --   end,
-      -- })
     end,
     opts_extend = { "sources.default" },
-    -- Highlight the BlinkCmpMenu group
   },
 }

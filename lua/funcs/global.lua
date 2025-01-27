@@ -28,6 +28,6 @@ IfHas = function(plugin_name, callback, default)
     end
 end
 
-WK = function(...)
-  R('funcs.which_key').register(...)
-end
+-- WK = function(...)
+--   R('funcs.which_key').register(...)
+-- end
