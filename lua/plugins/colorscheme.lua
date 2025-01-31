@@ -22,8 +22,8 @@ return {
           hl.NeoTreeNormal = { bg = "none" }
           hl.NeoTreeNormalNC = { bg = "none" }
           -- blink-cmp groups
-          hl.BlinkCmpMenu = { 
-            bg = c.base03, 
+          hl.BlinkCmpMenu = {
+            bg = c.base03,
             -- fg = c.orange700 
           }
           hl.BlinkCmpMenuBorder = { fg = c.orange700 }
@@ -36,7 +36,7 @@ return {
           hl.FzfLuaBorder = { bg = "none", fg = c.orange700 }
           hl.FzfLuaTitle = { bg = "none", fg = c.orange300 }
           hl.WhichKey = { bg = "none"}
-          hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
+          -- hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
         end,
       })
     end,
