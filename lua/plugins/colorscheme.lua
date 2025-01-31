@@ -35,8 +35,12 @@ return {
           hl.FzfLuaNormal = { bg = "none" }
           hl.FzfLuaBorder = { bg = "none", fg = c.cyan700 }
           hl.FzfLuaTitle = { bg = "none", fg = c.orange300 }
+          -- which-key groups
           hl.WhichKey = { bg = "none"}
           -- hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
+          -- Lazygit groups
+          hl.LazyGitBorder = { bg = "none", fg = c.cyan700 }
+          hl.LazyGitFloat = { bg = "none", fg = c.cyan700 }
         end,
       })
     end,
