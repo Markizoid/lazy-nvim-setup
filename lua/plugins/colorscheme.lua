@@ -39,8 +39,8 @@ return {
           hl.WhichKey = { bg = "none"}
           -- hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
           -- Lazygit groups
-          hl.LazyGitBorder = { bg = "none", fg = c.cyan700 }
-          hl.LazyGitFloat = { bg = "none", fg = c.cyan700 }
+          hl.LazyGitBorder = { bg = "none", fg = c.cyan300 }
+          -- hl.LazyGitFloat = { bg = "none", fg = c.cyan700 }
         end,
       })
     end,
