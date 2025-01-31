@@ -33,7 +33,7 @@ return {
           hl.BlinkCmpSignatureHelpBorder = { bg = "none", fg = c.orange700 }
           -- fzf groups
           hl.FzfLuaNormal = { bg = "none" }
-          hl.FzfLuaBorder = { bg = "none", fg = c.orange700 }
+          hl.FzfLuaBorder = { bg = "none", fg = c.cyan700 }
           hl.FzfLuaTitle = { bg = "none", fg = c.orange300 }
           hl.WhichKey = { bg = "none"}
           -- hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
