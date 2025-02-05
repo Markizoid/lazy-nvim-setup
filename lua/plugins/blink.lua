@@ -1,16 +1,4 @@
 return {
-  -- Наконц! получилось настроить цветовую схему для автозаполнения
-  -- {
-  --   "craftzdog/solarized-osaka.nvim",
-  --   config = function()
-  --     require("solarized-osaka").setup({
-  --       on_highlights = function(hl, c)
-  --         -- local colors = require("solarized-osaka.colors").setup()
-  --         hl.BlinkCmpMenu = { fg = c.base0, bg = c.base03 }
-  --       end,
-  --     })
-  --   end,
-  -- },
   {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source

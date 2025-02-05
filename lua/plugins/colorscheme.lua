@@ -25,10 +25,7 @@ return {
           hl.NeoTreeFloatBorder = { bg = "none", fg = c.blue700 }
           hl.NeoTreeExpander = { bg = "none", fg = c.blue300 }
           -- blink-cmp groups
-          hl.BlinkCmpMenu = {
-            bg = c.base03,
-            -- fg = c.orange700 
-          }
+          hl.BlinkCmpMenu = { bg = c.base04 }
           hl.BlinkCmpMenuBorder = { fg = c.orange700 }
           hl.BlinkCmpDoc = { bg = "none" }
           hl.BlinkCmpDocBorder = { bg = "none", fg = c.orange700 }
@@ -40,7 +37,9 @@ return {
           hl.FzfLuaTitle = { bg = "none", fg = c.orange300 }
           hl.FzfPreviewTitle = { bg = "none", fg = c.orange300 }
           hl.FzfLuaScrollBorderFull = { bg = "none", fg = c.cyan300 }
-          hl.FzfLua = { bg = "none", fg = c.orange300 }
+          hl.FzfLuaPreviewTitle = { bg = "none", fg = c.orange300 }
+          hl.FzfLuaFzfMatch = { bg = "none", fg = c.orange300 }
+          hl.FzfLuaPathLineNr = { bg = "none", fg = c.orange300 }
           -- which-key groups
           hl.WhichKey = { bg = "none"}
           -- hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
