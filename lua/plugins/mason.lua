@@ -15,7 +15,7 @@ return {
 
     -- enable mason and configure icons
     mason.setup({
-      ensure_installed = {"debugpy"},
+      -- ensure_installed = { "debugpy" },
       providers = {
         "mason.providers.client",
         "mason.providers.registry-api",
@@ -32,6 +32,7 @@ return {
 
     mason_lspconfig.setup({
       -- list of servers for mason to install
+      automatic_installation = false,
       ensure_installed = {
         "lua-language-server",
         "jedi-language-server",
@@ -41,15 +42,25 @@ return {
         "graphql",
       },
     })
-    mason_tool_installer.setup({
-      ensure_installed = {
-        -- "jedi-language-server",
-        "markdown-oxide",
-        "prettier", -- prettier formatter
-        "stylua", -- lua formatter
-        "black", -- python formatter
-        "eslint_d",
-      },
+    require("mason-lspconfig").setup_handlers({
+      -- Default handler for all servers
+      function(server_name)
+        if server_name ~= "pyright" then
+          require("lspconfig")[server_name].setup({})
+        end
+      end,
+      -- No-op handler for pyright
+      ["pyright"] = function() end,
     })
+    -- mason_tool_installer.setup({
+    --   ensure_installed = {
+    --     "jedi-language-server",
+    --     "markdown-oxide",
+    --     "prettier", -- prettier formatter
+    --     "stylua", -- lua formatter
+    --     "black", -- python formatter
+    --     "eslint_d",
+    --   },
+    -- })
   end,
 }
