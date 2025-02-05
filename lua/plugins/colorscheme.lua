@@ -38,6 +38,9 @@ return {
           hl.FzfLuaNormal = { bg = "none" }
           hl.FzfLuaBorder = { bg = "none", fg = c.cyan700 }
           hl.FzfLuaTitle = { bg = "none", fg = c.orange300 }
+          hl.FzfPreviewTitle = { bg = "none", fg = c.orange300 }
+          hl.FzfLuaScrollBorderFull = { bg = "none", fg = c.cyan300 }
+          hl.FzfLua = { bg = "none", fg = c.orange300 }
           -- which-key groups
           hl.WhichKey = { bg = "none"}
           -- hl.WhichKeyBorder = { bg = "none", fg = c.orange700 }
