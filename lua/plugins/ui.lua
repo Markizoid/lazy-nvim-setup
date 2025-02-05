@@ -1,3 +1,4 @@
+-- if true then return {} end
 return {
   -- messages, cmdline and the popupmenu
   {

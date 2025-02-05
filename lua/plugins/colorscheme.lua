@@ -22,15 +22,15 @@ return {
           hl.NeoTreeNormal = { bg = "none" }
           hl.NeoTreeNormalNC = { bg = "none" }
           -- blink-cmp groups
-          hl.BlinkCmpMenu = {
-            bg = c.base03,
-            -- fg = c.orange700 
-          }
-          hl.BlinkCmpMenuBorder = { fg = c.orange700 }
-          hl.BlinkCmpDoc = { bg = "none" }
-          hl.BlinkCmpDocBorder = { bg = "none", fg = c.orange700 }
-          hl.BlinkCmpSignatureHelp = { bg = "none" }
-          hl.BlinkCmpSignatureHelpBorder = { bg = "none", fg = c.orange700 }
+          -- hl.BlinkCmpMenu = {
+          --   bg = c.base03,
+          --   -- fg = c.orange700 
+          -- }
+          -- hl.BlinkCmpMenuBorder = { fg = c.orange700 }
+          -- hl.BlinkCmpDoc = { bg = "none" }
+          -- hl.BlinkCmpDocBorder = { bg = "none", fg = c.orange700 }
+          -- hl.BlinkCmpSignatureHelp = { bg = "none" }
+          -- hl.BlinkCmpSignatureHelpBorder = { bg = "none", fg = c.orange700 }
           -- fzf groups
           hl.FzfLuaNormal = { bg = "none" }
           hl.FzfLuaBorder = { bg = "none", fg = c.cyan700 }

@@ -32,10 +32,11 @@ return {
 
     mason_lspconfig.setup({
       -- list of servers for mason to install
-      automatic_installation = false,
+      -- automatic_installation = false,
       ensure_installed = {
         "lua-language-server",
         "jedi-language-server",
+        "ruff",
         "html",
         "cssls",
         "tailwindcss",
@@ -52,15 +53,15 @@ return {
       -- No-op handler for pyright
       ["pyright"] = function() end,
     })
-    -- mason_tool_installer.setup({
-    --   ensure_installed = {
-    --     "jedi-language-server",
-    --     "markdown-oxide",
-    --     "prettier", -- prettier formatter
-    --     "stylua", -- lua formatter
-    --     "black", -- python formatter
-    --     "eslint_d",
-    --   },
-    -- })
+    mason_tool_installer.setup({
+      ensure_installed = {
+        "jedi-language-server",
+        "markdown-oxide",
+        "prettier", -- prettier formatter
+        "stylua", -- lua formatter
+        "black", -- python formatter
+        "eslint_d",
+      },
+    })
   end,
 }
